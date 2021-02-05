@@ -64,15 +64,15 @@ public class StudentRest {
 		return studentService.studentByNameOrMail(name, email);
 	}
 
-	@GetMapping("/byDepartmentName")
-	public List<Student> byDepartmentName(@RequestParam String departmentName) {
-		return studentService.byDepartmentName(departmentName);
-	}
-
-	@GetMapping("/bySubjectName")
-	public List<Student> bySubjectName(@RequestParam String subjectName) {
-		return studentService.bySubjectName(subjectName);
-	}
+	/*
+	 * @GetMapping("/byDepartmentName") public List<Student>
+	 * byDepartmentName(@RequestParam String departmentName) { return
+	 * studentService.byDepartmentName(departmentName); }
+	 * 
+	 * @GetMapping("/bySubjectName") public List<Student>
+	 * bySubjectName(@RequestParam String subjectName) { return
+	 * studentService.bySubjectName(subjectName); }
+	 */
 
 	@GetMapping("/byEmailLike")
 	public List<Student> byEmailLike(@RequestParam String email) {
@@ -82,6 +82,11 @@ public class StudentRest {
 	@GetMapping("/allWithSorting")
 	public List<Student> getAllWithSorting() {
 		return studentService.allWithSorting();
+	}
+
+	@GetMapping("/students/department/{id}")
+	public List<Student> getAllByDepartmentId(@PathVariable String id) {
+		return studentService.findStudentsByDepartmentId(id);
 	}
 
 }

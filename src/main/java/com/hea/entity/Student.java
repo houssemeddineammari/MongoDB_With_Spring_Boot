@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "student")
@@ -19,8 +20,11 @@ public class Student {
 	@Transient
 	private double percentage;
 
+	// Changing department from an embedded sub document to a separate collection
+	@DBRef
 	private Department department;
 
+	@DBRef
 	private List<Subject> subjects;
 
 	public String getId() {

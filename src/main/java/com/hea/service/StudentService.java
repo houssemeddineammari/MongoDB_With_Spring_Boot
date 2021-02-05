@@ -22,9 +22,11 @@ public interface StudentService {
 
 	public List<Student> studentByNameOrMail(String name, String email);
 
-	public List<Student> byDepartmentName(String departmentName);
-
-	public List<Student> bySubjectName(String subjectName);
+	/*
+	 * public List<Student> byDepartmentName(String departmentName);
+	 * 
+	 * public List<Student> bySubjectName(String subjectName);
+	 */
 
 	public List<Student> findByEmailLike(String email);
 
@@ -33,5 +35,7 @@ public interface StudentService {
 	// public List<Student> getAllWithPagination(int pageNo, int pageSize);
 
 	public List<Student> allWithSorting();
+
+	public List<Student> findStudentsByDepartmentId(String id);
 
 }

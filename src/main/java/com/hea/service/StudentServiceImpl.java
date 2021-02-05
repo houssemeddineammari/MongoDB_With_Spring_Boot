@@ -7,7 +7,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.hea.entity.Student;
+import com.hea.repository.DepartmentRepository;
 import com.hea.repository.StudentRepository;
+import com.hea.repository.SubjectRepository;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -15,7 +17,19 @@ public class StudentServiceImpl implements StudentService {
 	@Autowired
 	private StudentRepository studentRepo;
 
+	@Autowired
+	private DepartmentRepository departmentRepo;
+
+	@Autowired
+	private SubjectRepository subjectRepo;
+
 	public Student createStudent(Student student) {
+		if (student.getDepartment() != null) {
+			departmentRepo.save(student.getDepartment());
+		}
+		if (student.getSubjects() != null && student.getSubjects().size() > 0) {
+			subjectRepo.saveAll(student.getSubjects());
+		}
 		return studentRepo.save(student);
 	}
 
@@ -73,14 +87,13 @@ public class StudentServiceImpl implements StudentService {
 		return studentRepo.findAll(sort);
 	}
 
-	public List<Student> byDepartmentName(String departmentName) {
-		return studentRepo.findByDepartmentDepartmentName(departmentName);
-	}
-
-	@Override
-	public List<Student> bySubjectName(String subjectName) {
-		return studentRepo.findBySubjectsSubjectName(subjectName);
-	}
+	/*
+	 * public List<Student> byDepartmentName(String departmentName) { return
+	 * studentRepo.findByDepartmentDepartmentName(departmentName); }
+	 * 
+	 * @Override public List<Student> bySubjectName(String subjectName) { return
+	 * studentRepo.findBySubjectsSubjectName(subjectName); }
+	 */
 
 	@Override
 	public List<Student> findByEmailLike(String email) {
@@ -91,6 +104,12 @@ public class StudentServiceImpl implements StudentService {
 	public List<Student> nameStartsWith(String name) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Student> findStudentsByDepartmentId(String id) {
+
+		return studentRepo.findByDepartmentIdDept(id);
 	}
 
 }
