@@ -3,6 +3,7 @@ package com.hea.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.hea.entity.Student;
@@ -34,7 +35,7 @@ public class StudentServiceImpl implements StudentService {
 		Student tobeUpdated = studentRepo.findById(id).get();
 		tobeUpdated.setName(s.getName());
 		tobeUpdated.setEmail(s.getEmail());
-		tobeUpdated.setDepartement(s.getDepartement());
+		tobeUpdated.setDepartment(s.getDepartment());
 		tobeUpdated.setSubjects(s.getSubjects());
 		studentRepo.save(tobeUpdated);
 		return tobeUpdated;
@@ -60,34 +61,30 @@ public class StudentServiceImpl implements StudentService {
 		return studentRepo.findByNameOrEmail(name, email);
 	}
 
-	@Override
-	public List<Student> getAllWithPagination(int pageNo, int pageSize) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public List<Student> getAllWithPagination(int pageNo, int pageSize) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 	@Override
 	public List<Student> allWithSorting() {
-		// TODO Auto-generated method stub
-		return null;
+		Sort sort = Sort.by(Sort.Direction.ASC, "name");
+		return studentRepo.findAll(sort);
+	}
+
+	public List<Student> byDepartmentName(String departmentName) {
+		return studentRepo.findByDepartmentDepartmentName(departmentName);
 	}
 
 	@Override
-	public List<Student> byDepartmentName(String deptName) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Student> bySubjectName(String subjectName) {
+		return studentRepo.findBySubjectsSubjectName(subjectName);
 	}
 
 	@Override
-	public List<Student> bySubjectName(String subName) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Student> emailLike(String email) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Student> findByEmailLike(String email) {
+		return studentRepo.findByEmailLike(email);
 	}
 
 	@Override

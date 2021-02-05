@@ -43,25 +43,45 @@ public class StudentRest {
 	public Student updateStudent(@RequestBody Student s, @PathVariable String id) {
 		return studentService.updateStudent(s, id);
 	}
-	
+
 	@GetMapping("/students")
-	public List<Student> getAllStudents(){
+	public List<Student> getAllStudents() {
 		return studentService.getAllStudents();
 	}
-	
+
 	@GetMapping("/students/{name}")
-	public List<Student> getAllStudentsByName(@PathVariable String name){
+	public List<Student> getAllStudentsByName(@PathVariable String name) {
 		return studentService.getAllStudentsByName(name);
 	}
-	
+
 	@GetMapping("/findStudentByNameAndEemail")
 	public Student findStudentByNameAndEemail(@RequestParam String name, @RequestParam String email) {
 		return studentService.studentByNameAndEmail(name, email);
 	}
-	
+
 	@GetMapping("/findStudentByNameOrEmail")
 	public List<Student> findStudentByNameOrEmail(@RequestParam String name, @RequestParam String email) {
 		return studentService.studentByNameOrMail(name, email);
+	}
+
+	@GetMapping("/byDepartmentName")
+	public List<Student> byDepartmentName(@RequestParam String departmentName) {
+		return studentService.byDepartmentName(departmentName);
+	}
+
+	@GetMapping("/bySubjectName")
+	public List<Student> bySubjectName(@RequestParam String subjectName) {
+		return studentService.bySubjectName(subjectName);
+	}
+
+	@GetMapping("/byEmailLike")
+	public List<Student> byEmailLike(@RequestParam String email) {
+		return studentService.findByEmailLike(email);
+	}
+
+	@GetMapping("/allWithSorting")
+	public List<Student> getAllWithSorting() {
+		return studentService.allWithSorting();
 	}
 
 }

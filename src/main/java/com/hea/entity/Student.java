@@ -3,9 +3,10 @@ package com.hea.entity;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection="student")
+@Document(collection = "student")
 public class Student {
 
 	@Id
@@ -15,10 +16,11 @@ public class Student {
 
 	private String email;
 
+	@Transient
 	private double percentage;
-	
-	private Department departement;
-	
+
+	private Department department;
+
 	private List<Subject> subjects;
 
 	public String getId() {
@@ -53,12 +55,12 @@ public class Student {
 		this.percentage = percentage;
 	}
 
-	public Department getDepartement() {
-		return departement;
+	public Department getDepartment() {
+		return department;
 	}
 
-	public void setDepartement(Department departement) {
-		this.departement = departement;
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 
 	public List<Subject> getSubjects() {
@@ -68,7 +70,5 @@ public class Student {
 	public void setSubjects(List<Subject> subjects) {
 		this.subjects = subjects;
 	}
-	
-	
 
 }

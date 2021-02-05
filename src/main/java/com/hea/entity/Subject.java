@@ -21,7 +21,5 @@ public class Subject {
 	public void setMarksObtained(int marksObtained) {
 		this.marksObtained = marksObtained;
 	}
-	
-	
 
 }
