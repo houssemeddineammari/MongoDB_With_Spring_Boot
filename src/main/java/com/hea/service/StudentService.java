@@ -38,4 +38,6 @@ public interface StudentService {
 
 	public List<Student> findStudentsByDepartmentId(String id);
 
+	public List<Student> findStudentsByName(String name);
+
 }

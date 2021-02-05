@@ -112,4 +112,9 @@ public class StudentServiceImpl implements StudentService {
 		return studentRepo.findByDepartmentIdDept(id);
 	}
 
+	@Override
+	public List<Student> findStudentsByName(String name) {
+		return studentRepo.fetchStudentsByName(name);
+	}
+
 }

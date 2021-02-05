@@ -3,6 +3,7 @@ package com.hea.repository;
 import java.util.List;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.hea.entity.Student;
@@ -38,5 +39,8 @@ public interface StudentRepository extends MongoRepository<Student, String> {
 	 * This is the new proxy method format when using separate collections
 	 */
 	List<Student> findByDepartmentIdDept(String id);
+
+	@Query("{ \"name\" : \"?0\" }")
+	List<Student> fetchStudentsByName(String name);
 
 }

@@ -89,4 +89,9 @@ public class StudentRest {
 		return studentService.findStudentsByDepartmentId(id);
 	}
 
+	@GetMapping("/studentsByName")
+	public List<Student> StudentsByName(@RequestParam String name) {
+		return studentService.findStudentsByName(name);
+	}
+
 }
